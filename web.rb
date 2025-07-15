@@ -204,6 +204,10 @@ post '/create_setup_intent' do
       setup_intent_params[:on_behalf_of] = params[:on_behalf_of]
     end
 
+    if !params[:allow_redisplay].nil?
+      setup_intent_params[:allow_redisplay] = params[:allow_redisplay]
+    end
+
     setup_intent = Stripe::SetupIntent.create(setup_intent_params)
 
   rescue Stripe::StripeError => e
